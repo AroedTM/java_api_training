@@ -9,9 +9,9 @@ import java.io.OutputStream;
 public class CallHandler implements HttpHandler {
 
     public void handle(HttpExchange exchange) throws IOException {
-        String body = "OK";
+        final String body = "OK";
         exchange.sendResponseHeaders(200, body.length());
-        try(OutputStream os = exchange.getResponseBody()){
+        try(final OutputStream os = exchange.getResponseBody()){
             os.write(body.getBytes());
         }
     }
