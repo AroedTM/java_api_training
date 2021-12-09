@@ -9,13 +9,20 @@ class CheckTest {
 
     @Test
     void four_is_Int() {
-        boolean bool = check.isStringInt("4");
+        final boolean bool = check.isStringInt("4");
         Assertions.assertThat(bool).isTrue();
     }
 
     @Test
     void server_is_not_Int() {
-        boolean bool = check.isStringInt("server");
+        final boolean bool = check.isStringInt("server");
         Assertions.assertThat(bool).isFalse();
     }
+
+    @Test
+    void convert_port(){
+        final String string = check.convertArgPort("http://localhost:9876");
+        Assertions.assertThat(string).isEqualTo("9876");
+    }
+
 }

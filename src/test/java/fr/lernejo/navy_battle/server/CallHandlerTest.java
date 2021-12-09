@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.*;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -21,9 +20,7 @@ class CallHandlerTest {
     @Test
     public void test_200() throws Exception {
         server.start();
-        final HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("http://localhost:9870/ping"))
-            .build();
+        final HttpRequest request = new Request().simpleRequest("http://localhost:9870/ping");
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(200);
