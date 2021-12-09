@@ -12,7 +12,8 @@ import java.net.http.HttpResponse;
 
 class StartHandlerTest {
 
-    private final HttpServer server = new Server().launchServer(9870);
+    private final int port = 9870;
+    private final HttpServer server = new Server().launchServer(port);
     private final HttpClient client = HttpClient.newHttpClient();
 
     StartHandlerTest() throws IOException {
@@ -32,11 +33,12 @@ class StartHandlerTest {
     }
 
     @Test
-    public void test_400_post() throws Exception {
+    public void test_400_post_without_json() throws Exception {
         server.start();
         final HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("http://localhost:9870/api/game/start"))
-            .header("Content-Type", "text/html")
+            .setHeader("Accept", "text/html")
+            .setHeader("Content-Type", "text/html")
             .POST(HttpRequest.BodyPublishers.ofString("Test"))
             .build();
         final HttpResponse<?> response = client.send(request,
@@ -46,12 +48,28 @@ class StartHandlerTest {
     }
 
     @Test
-    public void test_202_post() throws Exception {
+    public void test_400_post_with_bad_json() throws Exception {
         server.start();
         final HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("http://localhost:9870/api/game/start"))
-            .header("Content-Type", "application/json")
+            .setHeader("Accept", "application/json")
+            .setHeader("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString("Test"))
+            .build();
+        final HttpResponse<?> response = client.send(request,
+            HttpResponse.BodyHandlers.ofString());
+        Assertions.assertThat(response.statusCode()).isEqualTo(400);
+        server.stop(1);
+    }
+
+    @Test
+    public void test_400_post_with_good_json() throws Exception {
+        server.start();
+        final HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://localhost:9870/api/game/start"))
+            .setHeader("Accept", "application/json")
+            .setHeader("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString("{\"id\":\"45145151\", \"url\":\"http://localhost:" + port + "\", \"message\":\"Test\"}"))
             .build();
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
