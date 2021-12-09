@@ -1,9 +1,10 @@
 package fr.lernejo.navy_battle;
 
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.check.Check;
+import fr.lernejo.navy_battle.server.Server;
+
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.util.concurrent.Executors;
 
 public class Launcher{
 
@@ -12,10 +13,7 @@ public class Launcher{
         {
             final boolean is_Int = new Check().isStringInt(args[0]);
             if(is_Int){
-                final HttpServer server = HttpServer.create(new InetSocketAddress(Integer.parseInt(args[0])), 0);
-                server.createContext("/ping", new CallHandler());
-                server.createContext("/api/game/start", new StartHandler());
-                server.setExecutor(Executors.newFixedThreadPool(1));
+                final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]));
                 server.start();
             }else{
                 System.out.println("Pour lancer le programme :");

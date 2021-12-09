@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.check;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
