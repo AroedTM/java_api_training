@@ -20,7 +20,7 @@ class FireHandlerTest {
     @Test
     public void test_202_get() throws Exception {
         server.start();
-        final HttpRequest request = new Request().getRequest("http://localhost:9870/api/game/fire", "B2");
+        final HttpRequest request = new Request().getRequest("http://localhost:9870/api/game/fire?cell=A1");
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(202);

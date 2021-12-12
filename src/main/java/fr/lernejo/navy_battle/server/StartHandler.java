@@ -18,7 +18,7 @@ public class StartHandler implements HttpHandler {
         if("POST".equals(exchange.getRequestMethod())){
             if(exchange.getRequestHeaders().get("Content-Type").toString().equals("[application/json]")) {
                 if(new Check().validateJson(new String(exchange.getRequestBody().readAllBytes()), jsonMaster)){
-                    new Response().json_response_post(exchange, 202, "2aca7611-0ae4-49f3-bf63-75bef4769028", "Requete receptionnee");
+                    new Response().json_response_post(exchange, 202, "2", "Hi, Yes !");
                 }else {new Response().basic_response(exchange, 400, "Bad Request");}
             }else {new Response().basic_response(exchange, 400, "Bad Request");}
         }

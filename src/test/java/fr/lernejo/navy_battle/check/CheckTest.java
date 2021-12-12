@@ -36,4 +36,10 @@ class CheckTest {
         Assertions.assertThat(bool).isFalse();
     }
 
+    @Test
+    void cell_is_A1(){
+        final String cell = check.getCell("http://localhost:9870/api/game/start?cell=A1");
+        Assertions.assertThat(cell).isEqualTo("A1");
+    }
+
 }

@@ -1,11 +1,13 @@
 package fr.lernejo.navy_battle.check;
 
+import com.sun.net.httpserver.HttpExchange;
 import net.jimblackler.jsonschemafriend.Schema;
 import net.jimblackler.jsonschemafriend.SchemaException;
 import net.jimblackler.jsonschemafriend.SchemaStore;
 import net.jimblackler.jsonschemafriend.Validator;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Check {
 
@@ -34,5 +36,17 @@ public class Check {
         } catch (SchemaException e) {
             return false;
         }
+    }
+
+    public String getCell(String url){
+        final String[] theUrl = new StringBuilder(url).reverse().toString().split("");
+        final StringBuilder theCell = new StringBuilder();
+        int i = 0;
+        while(!Objects.equals(theUrl[i], "="))
+        {
+            theCell.append(theUrl[i]);
+            i++;
+        }
+        return theCell.reverse().toString();
     }
 }

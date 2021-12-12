@@ -21,7 +21,7 @@ class StartHandlerTest {
     @Test
     public void test_404_get() throws Exception {
         server.start();
-        final HttpRequest request = new Request().getRequest("http://localhost:9870/api/game/start", "B2");
+        final HttpRequest request = new Request().getRequest("http://localhost:9870/api/game/start?cell=A1");
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(404);

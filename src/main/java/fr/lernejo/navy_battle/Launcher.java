@@ -22,7 +22,7 @@ public class Launcher{
                     final HttpClient client = HttpClient.newHttpClient();
                     final HttpRequest request = new Request().postRequest(args[1] + "/api/game/start",
                         "application/json",
-                        "{\"id\":\"45145151\", \"url\":\"http://localhost:" + args[0] + "\", \"message\":\"Test\"}");
+                        "{\"id\":\"1\", \"url\":\"http://localhost:" + args[0] + "\", \"message\":\"Hello, ready?\"}");
                     client.send(request, HttpResponse.BodyHandlers.ofString());}
             }else{new Check().displayHelp();}}
         else{new Check().displayHelp();}
