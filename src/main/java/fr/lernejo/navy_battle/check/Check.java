@@ -1,35 +1,38 @@
 package fr.lernejo.navy_battle.check;
 
-import java.util.Objects;
+import net.jimblackler.jsonschemafriend.Schema;
+import net.jimblackler.jsonschemafriend.SchemaException;
+import net.jimblackler.jsonschemafriend.SchemaStore;
+import net.jimblackler.jsonschemafriend.Validator;
+
+import java.io.IOException;
 
 public class Check {
 
     public boolean isStringInt(String string){
-        boolean is_Int;
         try{
             Integer.parseInt(string);
-            is_Int = true;
+            return true;
         } catch(NumberFormatException e){
-            is_Int = false;
+            return false;
         }
-        return is_Int;
-    }
-
-    public String convertArgPort(String string){
-        final String[] myport = new StringBuilder(string).reverse().toString().split("");
-        final StringBuilder theport = new StringBuilder();
-        int i = 0;
-        while(!Objects.equals(myport[i], ":") && !Objects.equals(myport[i], "\0"))
-        {
-            theport.append(myport[i]);
-            i++;
-        }
-        return theport.reverse().toString();
     }
 
     public void displayHelp(){
         System.out.println("Pour lancer le programme :");
         System.out.println("1. Arg: <port>");
         System.out.println("2. Args: <port> <url:port>");
+    }
+
+    public boolean validateJson(String jsonToCompare, String jsonMaster) throws IOException {
+        try {
+            final SchemaStore schemaStore = new SchemaStore();
+            final Schema schema = schemaStore.loadSchemaJson(jsonMaster);
+            final Validator validator = new Validator();
+            validator.validateJson(schema, jsonToCompare);
+            return true;
+        } catch (SchemaException e) {
+            return false;
+        }
     }
 }

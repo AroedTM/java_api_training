@@ -20,9 +20,10 @@ public class Request {
             .build();
     }
 
-    public HttpRequest getRequest(String url){
+    public HttpRequest getRequest(String url, String cell){
         return HttpRequest.newBuilder()
             .uri(URI.create(url))
+            .setHeader("cell", cell)
             .GET()
             .build();
     }

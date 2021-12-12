@@ -21,7 +21,7 @@ class StartHandlerTest {
     @Test
     public void test_404_get() throws Exception {
         server.start();
-        final HttpRequest request = new Request().getRequest("http://localhost:9870/api/game/start");
+        final HttpRequest request = new Request().getRequest("http://localhost:9870/api/game/start", "B2");
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(404);
@@ -45,7 +45,7 @@ class StartHandlerTest {
         server.start();
         final HttpRequest request = new Request().postRequest("http://localhost:9870/api/game/start",
             "application/json",
-            "Test");
+            "{\"test\":\"45145151\"}");
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(400);

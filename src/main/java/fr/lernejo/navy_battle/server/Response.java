@@ -14,13 +14,25 @@ public class Response{
         }
     }
 
-    public void json_response(HttpExchange exchange, int code, String id, String message) throws IOException {
+    public void json_response_post(HttpExchange exchange, int code, String id, String message) throws IOException {
         final String body = "{\n\t\"id\": \""
             + id
             + "\",\n\t\"url\": \"http://localhost:"
             + exchange.getLocalAddress().getPort()
             + "\",\n\t\"message\": \""
             + message
+            + "\"\n}";
+        exchange.sendResponseHeaders(code, body.length());
+        try(final OutputStream os = exchange.getResponseBody()){
+            os.write(body.getBytes());
+        }
+    }
+
+    public void json_response_get(HttpExchange exchange, int code, String consequence, boolean shipleft) throws IOException {
+        final String body = "{\n\t\"consequence\": \""
+            + consequence
+            + "\",\n\t\"shipleft\": \""
+            + shipleft
             + "\"\n}";
         exchange.sendResponseHeaders(code, body.length());
         try(final OutputStream os = exchange.getResponseBody()){
