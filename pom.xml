@@ -86,13 +86,13 @@
                 <version>2.1</version>
                 <executions>
                     <execution>
-                        <id>copy-dependencies</id>
+                        <id>copy all dependencies needed</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <outputDirectory>target/lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -109,7 +109,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>$fullqualified path to your main Class</mainClass>
+                            <mainClass>src/main/java/fr.lernejo.navy_battle.Launcher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

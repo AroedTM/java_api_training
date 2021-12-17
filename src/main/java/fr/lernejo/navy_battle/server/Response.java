@@ -28,12 +28,12 @@ public class Response{
         }
     }
 
-    public void json_response_get(HttpExchange exchange, int code, String consequence, boolean shipleft) throws IOException {
+    public void json_response_get(HttpExchange exchange, int code, String consequence, boolean shipLeft) throws IOException {
         final String body = "{\n\t\"consequence\": \""
             + consequence
-            + "\",\n\t\"shipleft\": \""
-            + shipleft
-            + "\"\n}";
+            + "\",\n\t\"shipLeft\": "
+            + shipLeft
+            + "\n}";
         exchange.sendResponseHeaders(code, body.length());
         try(final OutputStream os = exchange.getResponseBody()){
             os.write(body.getBytes());

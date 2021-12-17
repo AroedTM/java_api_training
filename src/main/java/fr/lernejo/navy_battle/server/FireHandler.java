@@ -11,7 +11,9 @@ public class FireHandler implements HttpHandler{
     public void handle(HttpExchange exchange) throws IOException {
         if("GET".equals(exchange.getRequestMethod())){
             final String cell = new Check().getCell(exchange.getRequestURI().toString());
-            new Response().json_response_get(exchange, 202, "sunk", true);
+            final String consequence = "sunk";
+            final boolean shipLeft = true;
+            new Response().json_response_get(exchange, 202, consequence, shipLeft);
         }else {new Response().basic_response(exchange, 404, "Not Found");}
     }
 }
