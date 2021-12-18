@@ -20,8 +20,8 @@ public class FireHandler implements HttpHandler{
             final String cell = new Check().getCell(exchange.getRequestURI().toString());
             System.out.println("cell : " + cell);
             new Response().json_response_get(exchange, 202, game.whatInCell(cell), true);
-            /*try {game.shoot();}
-            catch (InterruptedException e) {e.printStackTrace();}*/
+            try {game.shoot();}
+            catch (InterruptedException e) {e.printStackTrace();}
         }else {new Response().basic_response(exchange, 404, "Not Found");}
     }
 }

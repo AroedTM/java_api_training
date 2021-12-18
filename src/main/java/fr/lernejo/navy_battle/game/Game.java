@@ -8,6 +8,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class Game {
     final public Scanner scanner = new Scanner(System.in);
     final public ArrayList<String> address = new ArrayList<>();
     final public ArrayList<Integer> id_received = new ArrayList<>();
+    final public ArrayList<Boolean> gameOn = new ArrayList<>(List.of(false));
 
     public void placeBoats(){
         sea.initializeSea(my_sea);
@@ -46,6 +48,8 @@ public class Game {
     public void initData(String message){
         this.address.add(message.split("\"")[7]);
         this.id_received.add(Integer.parseInt(message.split("\"")[3]));
+        this.gameOn.remove(0);
+        this.gameOn.add(true);
         System.out.println("La partie commence !");
         if(this.id_received.get(0) == 1) {
             try {shoot();}
@@ -67,13 +71,15 @@ public class Game {
     }
 
     public void shoot() throws IOException, InterruptedException {
-        System.out.println("Quelle case souhaitez-vous attaquer ?");
-        final ArrayList<String> target_list = new ArrayList<>();
-        target_list.add(scanner.nextLine());
-        final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0));
-        final HttpClient client = HttpClient.newHttpClient();
-        final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        consequence(response.body().toString(), target_list);
+        if(gameOn.get(0)){
+            System.out.println("Quelle case souhaitez-vous attaquer ?");
+            final ArrayList<String> target_list = new ArrayList<>();
+            target_list.add(scanner.nextLine());
+            final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0));
+            final HttpClient client = HttpClient.newHttpClient();
+            final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            consequence(response.body().toString(), target_list);
+        }
     }
 
     public void consequence(String response, ArrayList<String> target_list){
