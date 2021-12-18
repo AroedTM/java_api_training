@@ -1,6 +1,7 @@
 package fr.lernejo.navy_battle.server;
 
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.game.Game;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import java.net.http.HttpResponse;
 
 class CallHandlerTest {
 
-    private final HttpServer server = new Server().launchServer(9870);
+    private final HttpServer server = new Server().launchServer(9870, new Game());
     private final HttpClient client = HttpClient.newHttpClient();
 
     CallHandlerTest() throws IOException {
@@ -24,6 +25,6 @@ class CallHandlerTest {
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(200);
-        server.stop(1);
+        server.stop(0);
     }
 }

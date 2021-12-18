@@ -42,4 +42,10 @@ class CheckTest {
         Assertions.assertThat(cell).isEqualTo("A1");
     }
 
+    @Test
+    void B_is_equal_to_1(){
+        final int number = check.getIntFromString("B2");
+        Assertions.assertThat(number).isEqualTo(1);
+    }
+
 }

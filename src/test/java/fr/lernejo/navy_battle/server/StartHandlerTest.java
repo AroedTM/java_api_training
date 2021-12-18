@@ -1,6 +1,7 @@
 package fr.lernejo.navy_battle.server;
 
 import com.sun.net.httpserver.HttpServer;
+import fr.lernejo.navy_battle.game.Game;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ import java.net.http.HttpResponse;
 class StartHandlerTest {
 
     private final int port = 9870;
-    private final HttpServer server = new Server().launchServer(port);
+    private final HttpServer server = new Server().launchServer(port, new Game());
     private final HttpClient client = HttpClient.newHttpClient();
 
     StartHandlerTest() throws IOException {
@@ -25,7 +26,7 @@ class StartHandlerTest {
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(404);
-        server.stop(1);
+        server.stop(0);
     }
 
     @Test
@@ -37,7 +38,7 @@ class StartHandlerTest {
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(400);
-        server.stop(1);
+        server.stop(0);
     }
 
     @Test
@@ -49,11 +50,12 @@ class StartHandlerTest {
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(400);
-        server.stop(1);
+        server.stop(0);
     }
 
+
     @Test
-    public void test_400_post_with_good_json() throws Exception {
+    public void test_202_post_with_good_json() throws Exception {
         server.start();
         final HttpRequest request = new Request().postRequest("http://localhost:9870/api/game/start",
             "application/json",
@@ -61,7 +63,7 @@ class StartHandlerTest {
         final HttpResponse<?> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
         Assertions.assertThat(response.statusCode()).isEqualTo(202);
-        server.stop(1);
+        server.stop(0);
     }
 
 }

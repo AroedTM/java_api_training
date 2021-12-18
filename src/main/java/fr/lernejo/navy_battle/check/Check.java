@@ -1,13 +1,11 @@
 package fr.lernejo.navy_battle.check;
 
-import com.sun.net.httpserver.HttpExchange;
 import net.jimblackler.jsonschemafriend.Schema;
 import net.jimblackler.jsonschemafriend.SchemaException;
 import net.jimblackler.jsonschemafriend.SchemaStore;
 import net.jimblackler.jsonschemafriend.Validator;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class Check {
 
@@ -22,8 +20,8 @@ public class Check {
 
     public void displayHelp(){
         System.out.println("Pour lancer le programme :");
-        System.out.println("1. Arg: <port>");
-        System.out.println("2. Args: <port> <url:port>");
+        System.out.println("Joueur 1. Arg: <port>");
+        System.out.println("Joueur 2. Args: <port> <url:port>");
     }
 
     public boolean validateJson(String jsonToCompare, String jsonMaster) throws IOException {
@@ -39,14 +37,10 @@ public class Check {
     }
 
     public String getCell(String url){
-        final String[] theUrl = new StringBuilder(url).reverse().toString().split("");
-        final StringBuilder theCell = new StringBuilder();
-        int i = 0;
-        while(!Objects.equals(theUrl[i], "="))
-        {
-            theCell.append(theUrl[i]);
-            i++;
-        }
-        return theCell.reverse().toString();
+        return url.split("=")[1];
+    }
+
+    public int getIntFromString(String string){
+        return string.charAt(0) % 65;
     }
 }
