@@ -29,7 +29,8 @@ public class StartHandler implements HttpHandler {
                     new Response().json_response_post(exchange, 202, "2", "Hi, ready too. Game on !");
                     game.initData(message);
                 }else {new Response().basic_response(exchange, 400, "Bad Request");}
-            }else {new Response().basic_response(exchange, 400, "Bad Request");}
+            }
+            else {new Response().basic_response(exchange, 400, "Bad Request");}
         }
         else {new Response().basic_response(exchange, 404, "Not Found");}
     }
