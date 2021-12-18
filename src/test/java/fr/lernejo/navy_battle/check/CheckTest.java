@@ -43,21 +43,8 @@ class CheckTest {
     }
 
     @Test
-    void cell_is_not_B1(){
-        final String cell = check.getCell("http://localhost:9870/api/game/start?cell=A1");
-        Assertions.assertThat(cell).isNotEqualTo("B1");
-    }
-
-    @Test
     void B_is_equal_to_1(){
         final int number = check.getIntFromString("B2");
         Assertions.assertThat(number).isEqualTo(1);
     }
-
-    @Test
-    void B_is_not_equal_to_2(){
-        final int number = check.getIntFromString("B2");
-        Assertions.assertThat(number).isNotEqualTo(2);
-    }
-
 }
