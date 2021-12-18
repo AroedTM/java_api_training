@@ -18,7 +18,7 @@ public class FireHandler implements HttpHandler{
     public void handle(HttpExchange exchange) throws IOException {
         if("GET".equals(exchange.getRequestMethod())){
             final String cell = new Check().getCell(exchange.getRequestURI().toString());
-            System.out.println("cell : " + cell + ". Enemy " + game.whatInCell(cell) + " your boat.");
+            System.out.println("cell : " + cell);
             new Response().json_response_get(exchange, 202, game.whatInCell(cell), true);
             try {game.shoot();}
             catch (InterruptedException e) {e.printStackTrace();}

@@ -59,9 +59,10 @@ public class Game {
         if(cell.length() == 2){
             if((my_sea[Integer.parseInt(split[1])-1][col]) == '-') return "miss";
             if((my_sea[Integer.parseInt(split[1])-1][col]) == 'O') return "hit";
+        }else{
+            if((my_sea[Integer.parseInt(split[1] + split[2])-1][col]) == '-') return "miss";
+            if((my_sea[Integer.parseInt(split[1] + split[2])-1][col]) == 'O') return "hit";
         }
-        if((my_sea[Integer.parseInt(split[1] + split[2])-1][col]) == '-') return "miss";
-        if((my_sea[Integer.parseInt(split[1] + split[2])-1][col]) == 'O') return "hit";
         return "miss";
     }
 
@@ -77,10 +78,10 @@ public class Game {
 
     public void consequence(String response, ArrayList<String> target_list){
         if(response.contains("hit")){
-            sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'T'));
+            sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'H'));
             System.out.println("Cible touchée !");}
         else if(response.contains("sunk")){
-            sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'T'));
+            sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'H'));
             System.out.println("Cible coulée !");}
         else{
             sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'X'));
