@@ -20,7 +20,7 @@ class PorteAvionTest {
 
     @Test
     void name_is_ContreTorpilleur() {
-        Assertions.assertThat(porteAvion.name()).isEqualTo("Porte-avion");
+        Assertions.assertThat(porteAvion.name()).isEqualTo("Aircraft carrier");
     }
 
     @Test

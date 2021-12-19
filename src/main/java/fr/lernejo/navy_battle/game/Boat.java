@@ -7,4 +7,8 @@ public interface Boat {
     int size();
     void setBoatPos(ArrayList<String> pos);
     ArrayList<String> getBoatPos();
+    void setHitBoatPos(String pos);
+    ArrayList<String> getHitBoatPos();
+    void updateStatus();
+    boolean getStatus();
 }

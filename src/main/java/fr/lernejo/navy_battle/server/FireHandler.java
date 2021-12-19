@@ -7,21 +7,23 @@ import fr.lernejo.navy_battle.game.Game;
 
 import java.io.IOException;
 
-public class FireHandler implements HttpHandler{
-
-    final public Game game;
-
-    public FireHandler(Game game) {
-        this.game = game;
-    }
+public record FireHandler(Game game) implements HttpHandler {
 
     public void handle(HttpExchange exchange) throws IOException {
-        if("GET".equals(exchange.getRequestMethod())){
+        if ("GET".equals(exchange.getRequestMethod())) {
             final String cell = new Check().getCell(exchange.getRequestURI().toString());
-            System.out.println("cell : " + cell);
-            new Response().json_response_get(exchange, 202, game.whatInCell(cell), true);
+            final String consequence = game.whatInCell(cell);
+            final boolean shipLeft = game.statusGame();
+            System.out.println("Cell " + cell + " attacked. Enemy " + consequence + " you.");
+            new Response().json_response_get(exchange, 202, consequence, shipLeft);
+            if(!shipLeft){
+                System.out.println("DEFEAT ! Enemy has destroyed all your units.");
+                System.exit(0);
+            }
             try {game.shoot();}
             catch (InterruptedException e) {e.printStackTrace();}
-        }else {new Response().basic_response(exchange, 404, "Not Found");}
+        } else {
+            new Response().basic_response(exchange, 404, "Not Found");
+        }
     }
 }

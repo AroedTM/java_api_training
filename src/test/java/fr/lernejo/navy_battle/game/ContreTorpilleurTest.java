@@ -20,7 +20,7 @@ class ContreTorpilleurTest {
 
     @Test
     void name_is_ContreTorpilleur() {
-        Assertions.assertThat(contreTorpilleur.name()).isEqualTo("Contre-torpilleur");
+        Assertions.assertThat(contreTorpilleur.name()).isEqualTo("Destroyer");
     }
 
     @Test

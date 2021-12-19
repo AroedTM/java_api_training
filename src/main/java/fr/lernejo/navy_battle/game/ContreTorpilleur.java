@@ -1,10 +1,24 @@
 package fr.lernejo.navy_battle.game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContreTorpilleur implements Boat {
 
     private final ArrayList<String> positions = new ArrayList<>();
+    private final ArrayList<String> hitPositions = new ArrayList<>();
+    private final ArrayList<Boolean> isSunk = new ArrayList<>(List.of(false));
+
+    @Override
+    public void updateStatus(){
+        this.isSunk.remove(0);
+        this.isSunk.add(true);
+    }
+
+    @Override
+    public boolean getStatus() {
+        return this.isSunk.get(0);
+    }
 
     @Override
     public void setBoatPos(ArrayList<String> pos) {
@@ -17,8 +31,18 @@ public class ContreTorpilleur implements Boat {
     }
 
     @Override
+    public void setHitBoatPos(String pos) {
+        this.hitPositions.add(pos);
+    }
+
+    @Override
+    public ArrayList<String> getHitBoatPos() {
+        return this.hitPositions;
+    }
+
+    @Override
     public String name() {
-        return "Contre-torpilleur";
+        return "Destroyer";
     }
 
     @Override

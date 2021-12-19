@@ -20,7 +20,7 @@ class CroiseurTest {
 
     @Test
     void name_is_ContreTorpilleur() {
-        Assertions.assertThat(croiseur.name()).isEqualTo("Croiseur");
+        Assertions.assertThat(croiseur.name()).isEqualTo("Cruiser");
     }
 
     @Test

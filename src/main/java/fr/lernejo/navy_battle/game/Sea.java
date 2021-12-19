@@ -4,6 +4,7 @@ import fr.lernejo.navy_battle.check.Check;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Sea {
 
@@ -30,16 +31,17 @@ public class Sea {
 
     public void displaySea(char[][] leftSea, char[][] rightSea){
         System.out.println("     A B C D E F G H I J | A B C D E F G H I J \n   ---------------------------------------------");
-        int ligne = 1;
+        final ArrayList<Integer> ligne = new ArrayList<>(List.of(1));
         for (final char[] chars : leftSea) {
-            if(ligne != 10)
-                System.out.print(" ");
-            System.out.print(ligne + " | ");
+            if(ligne.get(0) != 10) {System.out.print(" ");}
+            System.out.print(ligne + " ");
             for (final char aChar : chars) System.out.print(aChar + " ");
             System.out.print("|");
-            for (final char aChar : rightSea[ligne-1]) System.out.print(" " + aChar);
-            System.out.println(" | " + ligne);
-            ligne++;
+            for (final char aChar : rightSea[ligne.get(0)-1]) System.out.print(" " + aChar);
+            System.out.println(" " + ligne);
+            final int tmp = ligne.get(0);
+            ligne.remove(0);
+            ligne.add(tmp+1);
         }
         System.out.println("   ---------------------------------------------");
     }
