@@ -1,6 +1,7 @@
 package fr.lernejo.navy_battle.game;
 
 import fr.lernejo.navy_battle.check.Check;
+import fr.lernejo.navy_battle.player.ComputerPlayer;
 import fr.lernejo.navy_battle.server.Request;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class Game {
     final public ArrayList<String> address = new ArrayList<>();
     final public ArrayList<Integer> id_received = new ArrayList<>();
     final public ArrayList<Boolean> gameOn = new ArrayList<>(List.of(false));
+    final public ComputerPlayer computerPlayer = new ComputerPlayer();
 
     public void placeBoats(){
         sea.initializeSea(my_sea);
@@ -36,7 +38,8 @@ public class Game {
             final ArrayList<String> positions = new ArrayList<>();
             for (int i = 0; i < b.size(); i++) {
                 System.out.println("Where would you like to place the cell " + (i + 1) + " of your : " + b.name() + " (" + (b.size() - i) + " remaining cell) : ");
-                positions.add(scanner.nextLine());}
+                positions.add(computerPlayer.placeBoat());
+                System.out.println(positions.get(i));}
             b.setBoatPos(positions);
             sea.displaySea(sea.fillCells(b.getBoatPos(), my_sea, 'O'), enemy_sea);
         }
@@ -72,7 +75,8 @@ public class Game {
         if(gameOn.get(0)){
             System.out.println("Which enemy cell to attack ?");
             final ArrayList<String> target_list = new ArrayList<>();
-            target_list.add(scanner.nextLine());
+            target_list.add(computerPlayer.cellToTarget());
+            System.out.println(target_list.get(0));
             final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0));
             final HttpClient client = HttpClient.newHttpClient();
             final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());

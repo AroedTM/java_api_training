@@ -19,6 +19,14 @@ class CroiseurTest {
     }
 
     @Test
+    void set_and_get_hit_ok() {
+        final ArrayList<String> positions = new ArrayList<>();
+        positions.add("A2");
+        croiseur.setHitBoatPos(positions.get(0));
+        Assertions.assertThat(croiseur.getHitBoatPos()).isEqualTo(positions);
+    }
+
+    @Test
     void name_is_ContreTorpilleur() {
         Assertions.assertThat(croiseur.name()).isEqualTo("Cruiser");
     }

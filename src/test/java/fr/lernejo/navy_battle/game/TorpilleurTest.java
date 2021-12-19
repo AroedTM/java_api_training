@@ -19,6 +19,14 @@ class TorpilleurTest {
     }
 
     @Test
+    void set_and_get_hit_ok() {
+        final ArrayList<String> positions = new ArrayList<>();
+        positions.add("A2");
+        torpilleur.setHitBoatPos(positions.get(0));
+        Assertions.assertThat(torpilleur.getHitBoatPos()).isEqualTo(positions);
+    }
+
+    @Test
     void name_is_ContreTorpilleur() {
         Assertions.assertThat(torpilleur.name()).isEqualTo("Torpedo boat");
     }
