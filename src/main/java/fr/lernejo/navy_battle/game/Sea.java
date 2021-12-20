@@ -33,7 +33,7 @@ public class Sea {
         System.out.println("     A B C D E F G H I J | A B C D E F G H I J \n   ---------------------------------------------");
         final ArrayList<Integer> ligne = new ArrayList<>(List.of(1));
         for (final char[] chars : leftSea) {
-            if(ligne.get(0) != 10) {System.out.print(" ");}
+            if(ligne.get(0) != 10) System.out.print(" ");
             System.out.print(ligne + " ");
             for (final char aChar : chars) System.out.print(aChar + " ");
             System.out.print("|");

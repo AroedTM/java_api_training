@@ -18,12 +18,6 @@ public class Check {
         }
     }
 
-    public void displayHelp(){
-        System.out.println("Pour lancer le programme :");
-        System.out.println("Joueur 1. Arg: <port>");
-        System.out.println("Joueur 2. Args: <port> <url:port>");
-    }
-
     public boolean validateJson(String jsonToCompare, String jsonMaster) throws IOException {
         try {
             final SchemaStore schemaStore = new SchemaStore();

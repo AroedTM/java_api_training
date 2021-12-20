@@ -10,10 +10,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
-
     final public Sea sea = new Sea();
     final public char[][] my_sea = new char[10][10];
     final public char[][] enemy_sea = new char[10][10];
@@ -24,7 +22,6 @@ public class Game {
         new ContreTorpilleur(),
         new Torpilleur()
     );
-    final public Scanner scanner = new Scanner(System.in);
     final public ArrayList<String> address = new ArrayList<>();
     final public ArrayList<Integer> id_received = new ArrayList<>();
     final public ArrayList<Boolean> gameOn = new ArrayList<>(List.of(false));
