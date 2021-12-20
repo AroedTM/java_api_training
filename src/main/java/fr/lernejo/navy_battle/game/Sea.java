@@ -11,22 +11,19 @@ public class Sea {
     private final Check check = new Check();
 
     public void initializeSea(char[][] sea) {
-        for (final char[] chars : sea) {
+        for (final char[] chars : sea)
             Arrays.fill(chars, '-');
-        }
     }
 
     public char[][] fillCells(ArrayList<String> positions, char[][] sea, char caracter){
         for(final String pos : positions){
             final String[] split = pos.split("");
             final int col = check.getIntFromString(split[0]);
-            if(pos.length() == 2){
+            if(pos.length() == 2)
                 sea[Integer.parseInt(split[1])-1][col] = caracter;
-            }else{
-                sea[Integer.parseInt(split[1] + split[2])-1][col] = caracter;
-            }
-        }
-        return sea;
+            else{
+                sea[Integer.parseInt(split[1] + split[2])-1][col] = caracter;}
+        }return sea;
     }
 
     public void displaySea(char[][] leftSea, char[][] rightSea){
@@ -41,8 +38,7 @@ public class Sea {
             System.out.println(" " + ligne);
             final int tmp = ligne.get(0);
             ligne.remove(0);
-            ligne.add(tmp+1);
-        }
+            ligne.add(tmp+1);}
         System.out.println("   ---------------------------------------------");
     }
 
@@ -51,11 +47,10 @@ public class Sea {
         final int col = new Check().getIntFromString(split[0]);
         if (cell.length() == 2) {
             if ((my_sea[Integer.parseInt(split[1]) - 1][col]) == '-') return "miss";
-            if ((my_sea[Integer.parseInt(split[1]) - 1][col]) == 'O') return updateHitBoat(cell, boat_list);
-        } else {
+            if ((my_sea[Integer.parseInt(split[1]) - 1][col]) == 'O') return updateHitBoat(cell, boat_list);}
+        else {
             if ((my_sea[Integer.parseInt(split[1] + split[2]) - 1][col]) == '-') return "miss";
-            if ((my_sea[Integer.parseInt(split[1] + split[2]) - 1][col]) == 'O') return updateHitBoat(cell, boat_list);
-        }
+            if ((my_sea[Integer.parseInt(split[1] + split[2]) - 1][col]) == 'O') return updateHitBoat(cell, boat_list);}
         return "miss";
     }
 
@@ -66,10 +61,7 @@ public class Sea {
                     b.setHitBoatPos(cell);
                 if(b.getHitBoatPos().containsAll(b.getBoatPos())){
                     b.updateStatus();
-                    return "sunk";
-                }
-            }
-        }
+                    return "sunk";}}}
         return "hit";
     }
 }

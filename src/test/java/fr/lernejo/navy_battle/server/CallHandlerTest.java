@@ -22,10 +22,8 @@ class CallHandlerTest {
     @Test
     public void test_200() throws Exception {
         server.start();
-        final HttpRequest request = new Request().simpleRequest("http://localhost:9870/ping");
-        final HttpResponse<?> response = client.send(request,
-            HttpResponse.BodyHandlers.ofString());
-        Assertions.assertThat(response.statusCode()).isEqualTo(200);
+        final String response = new Request().simpleRequest("http://localhost:9870/ping");
+        Assertions.assertThat(response).contains("OK");
         server.stop(0);
     }
 }
