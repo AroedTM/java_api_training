@@ -24,7 +24,7 @@ public class StartHandler implements HttpHandler {
     }
 
     public void dest(String message){
-        Pattern pattern = Pattern.compile("(http://[a-z]*:[0-9]*)");
+        Pattern pattern = Pattern.compile("(http://([A-Z]|[a-z]|[0-9])*:[0-9]*)");
         Matcher matcher = pattern.matcher(message);
         if (matcher.find())
         {
