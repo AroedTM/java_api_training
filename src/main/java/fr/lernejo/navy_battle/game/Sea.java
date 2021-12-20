@@ -45,4 +45,39 @@ public class Sea {
         }
         System.out.println("   ---------------------------------------------");
     }
+
+    public String whatInCell(String cell, char[][] my_sea, List<Boat> boat_list) {
+        final String[] split = cell.split("");
+        final int col = new Check().getIntFromString(split[0]);
+        if (cell.length() == 2) {
+            if ((my_sea[Integer.parseInt(split[1]) - 1][col]) == '-') return "miss";
+            if ((my_sea[Integer.parseInt(split[1]) - 1][col]) == 'O') return updateHitBoat(cell, boat_list);
+        } else {
+            if ((my_sea[Integer.parseInt(split[1] + split[2]) - 1][col]) == '-') return "miss";
+            if ((my_sea[Integer.parseInt(split[1] + split[2]) - 1][col]) == 'O') return updateHitBoat(cell, boat_list);
+        }
+        return "miss";
+    }
+
+    public String updateHitBoat(String cell, List<Boat> boat_list){
+        for (final Boat b : boat_list) {
+            if(b.getBoatPos().contains(cell)){
+                if(!b.getHitBoatPos().contains(cell))
+                    b.setHitBoatPos(cell);
+                if(b.getHitBoatPos().containsAll(b.getBoatPos())){
+                    b.updateStatus();
+                    return "sunk";
+                }
+            }
+        }
+        return "hit";
+    }
+
+    public boolean statusGame(List<Boat> boat_list){
+        for (final Boat b : boat_list) {
+            if(!b.getStatus())
+                return true;
+        }
+        return false;
+    }
 }

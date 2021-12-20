@@ -1,6 +1,5 @@
 package fr.lernejo.navy_battle.game;
 
-import fr.lernejo.navy_battle.check.Check;
 import fr.lernejo.navy_battle.player.ComputerPlayer;
 import fr.lernejo.navy_battle.server.Request;
 
@@ -22,10 +21,12 @@ public class Game {
         new ContreTorpilleur(),
         new Torpilleur()
     );
-    final public ArrayList<String> address = new ArrayList<>();
-    final public ArrayList<Integer> id_received = new ArrayList<>();
-    final public ArrayList<Boolean> gameOn = new ArrayList<>(List.of(false));
-    final public ComputerPlayer computerPlayer = new ComputerPlayer();
+    final public ComputerPlayer computerPlayer;
+    public String destination;
+
+    public Game(ComputerPlayer computerPlayer){
+        this.computerPlayer = computerPlayer;
+    }
 
     public void placeBoats(){
         sea.initializeSea(my_sea);
@@ -43,33 +44,12 @@ public class Game {
         System.out.println("Waiting for the opponent..");
     }
 
-    public void initData(String message){
-        this.address.add(message.split("\"")[7]);
-        this.id_received.add(Integer.parseInt(message.split("\"")[3]));
-        System.out.println("Game on !");
-    }
-
-    public String whatInCell(String cell){
-        final String[] split = cell.split("");
-        final int col = new Check().getIntFromString(split[0]);
-        if(cell.length() == 2){
-            if((my_sea[Integer.parseInt(split[1])-1][col]) == '-') return "miss";
-            if((my_sea[Integer.parseInt(split[1])-1][col]) == 'O') return updateHitBoat(cell);
-        }else{
-            if((my_sea[Integer.parseInt(split[1] + split[2])-1][col]) == '-') return "miss";
-            if((my_sea[Integer.parseInt(split[1] + split[2])-1][col]) == 'O') return updateHitBoat(cell);
-        }
-        return "miss";
-    }
-
     public void shoot() throws IOException, InterruptedException {
-        try {Thread.sleep(500);}
-        catch(InterruptedException ex) {Thread.currentThread().interrupt();}
         System.out.println("Which enemy cell to attack ?");
         final ArrayList<String> target_list = new ArrayList<>();
         target_list.add(computerPlayer.cellToTarget());
         System.out.println(target_list.get(0));
-        final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0), "application/json");
+        final HttpRequest request = new Request().getRequest(destination + "/api/game/fire?cell=" + target_list.get(0), "application/json");
         final HttpClient client = HttpClient.newHttpClient();
         final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         consequence(response.body().toString(), target_list);
@@ -90,27 +70,5 @@ public class Game {
         else{
             sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'X'));
             System.out.println("Target missed !");}
-    }
-
-    public String updateHitBoat(String cell){
-        for (final Boat b : boat_list) {
-            if(b.getBoatPos().contains(cell)){
-                if(!b.getHitBoatPos().contains(cell))
-                    b.setHitBoatPos(cell);
-                if(b.getHitBoatPos().containsAll(b.getBoatPos())){
-                    b.updateStatus();
-                    return "sunk";
-                }
-            }
-        }
-        return "hit";
-    }
-
-    public boolean statusGame(){
-        for (final Boat b : boat_list) {
-            if(!b.getStatus())
-                return true;
-        }
-        return false;
     }
 }

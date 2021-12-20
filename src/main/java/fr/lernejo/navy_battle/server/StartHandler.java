@@ -14,8 +14,7 @@ public class StartHandler implements HttpHandler {
         "        },\n" +"        \"url\": {\n" +"            \"type\": \"string\"\n" +"        },\n" +
         "        \"message\": {\n" +"            \"type\": \"string\"\n" +"        }\n" +"    },\n" +"    \"required\": [\n" +"        \"id\",\n" +
         "        \"url\",\n" +"        \"message\"\n" +"    ]\n" +"}";
-
-    final public Game game;
+    public final Game game;
 
     public StartHandler(Game game) {
         this.game = game;
@@ -27,7 +26,7 @@ public class StartHandler implements HttpHandler {
                 final String message = new String(exchange.getRequestBody().readAllBytes());
                 if(new Check().validateJson(message, jsonMaster)){
                     new Response().json_response_post(exchange, 202, "2", "Hi, ready too. Game on !");
-                    game.initData(message);
+                    game.destination = message.split("\"")[7];
                     try {game.shoot();}
                     catch (IOException | InterruptedException e) {e.printStackTrace();}
                 }else {new Response().basic_response(exchange, 400, "Bad Request");}
