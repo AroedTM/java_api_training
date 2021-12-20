@@ -1,4 +1,4 @@
-/*package fr.lernejo.navy_battle.game;
+package fr.lernejo.navy_battle.game;
 
 import fr.lernejo.navy_battle.check.Check;
 import fr.lernejo.navy_battle.player.ComputerPlayer;
@@ -119,4 +119,4 @@ public class Game {
         }
         return false;
     }
-}*/
+}

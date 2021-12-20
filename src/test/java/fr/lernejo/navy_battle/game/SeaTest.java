@@ -1,4 +1,4 @@
-/*package fr.lernejo.navy_battle.game;
+package fr.lernejo.navy_battle.game;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,4 +18,4 @@ class SeaTest {
         tab1[0][0] = 'O';
         Assertions.assertThat(sea.fillCells(positions, tab2, 'O')).isEqualTo(tab1);
     }
-}*/
+}

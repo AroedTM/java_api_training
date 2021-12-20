@@ -1,7 +1,7 @@
 package fr.lernejo.navy_battle;
 
 import com.sun.net.httpserver.HttpServer;
-//import fr.lernejo.navy_battle.game.Game;
+import fr.lernejo.navy_battle.game.Game;
 import fr.lernejo.navy_battle.server.Request;
 import fr.lernejo.navy_battle.server.Server;
 
@@ -13,11 +13,11 @@ import java.net.http.HttpResponse;
 public class Launcher{
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        //Game game = new Game();
+        Game game = new Game();
         //final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]), game);
         final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]));
         server.start();
-        //game.placeBoats();
+        game.placeBoats();
         if(args.length == 2){
             final HttpClient client = HttpClient.newHttpClient();
             final HttpRequest request = new Request().postRequest(args[1] + "/api/game/start",
