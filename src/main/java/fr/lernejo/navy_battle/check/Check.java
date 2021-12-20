@@ -1,13 +1,9 @@
 package fr.lernejo.navy_battle.check;
 
-import fr.lernejo.navy_battle.game.Game;
 import net.jimblackler.jsonschemafriend.Schema;
 import net.jimblackler.jsonschemafriend.SchemaException;
 import net.jimblackler.jsonschemafriend.SchemaStore;
 import net.jimblackler.jsonschemafriend.Validator;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Check {
 
@@ -38,16 +34,5 @@ public class Check {
 
     public int getIntFromString(String string){
         return string.charAt(0) % 65;
-    }
-
-    public boolean dest(Game game, String message){
-        Pattern pattern = Pattern.compile("(http://localhost:[0-9]*)");
-        Matcher matcher = pattern.matcher(message);
-        if (matcher.find())
-        {
-            game.destination.add(matcher.group(1));
-            return true;
-        }
-        return false;
     }
 }

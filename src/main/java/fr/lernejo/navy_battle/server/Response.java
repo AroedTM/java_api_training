@@ -15,13 +15,7 @@ public class Response{
     }
 
     public void json_response_post(HttpExchange exchange, int code, String id, String message) throws IOException {
-        final String body = "{\n\t\"id\": \""
-            + id
-            + "\",\n\t\"url\": \"http://localhost:"
-            + exchange.getLocalAddress().getPort()
-            + "\",\n\t\"message\": \""
-            + message
-            + "\"\n}";
+        final String body = "{\"id\":\"" + id + "\", \"url\":\"http://localhost:" + exchange.getLocalAddress().getPort() + "\", \"message\":\"" + message + "\"}";
         exchange.getResponseHeaders().add("Content-Type", "application/json");
         exchange.sendResponseHeaders(code, body.length());
         try(final OutputStream os = exchange.getResponseBody()){
@@ -30,11 +24,7 @@ public class Response{
     }
 
     public void json_response_get(HttpExchange exchange, int code, String consequence, boolean shipLeft) throws IOException {
-        final String body = "{\n\t\"consequence\": \""
-            + consequence
-            + "\",\n\t\"shipLeft\": "
-            + shipLeft
-            + "\n}";
+        final String body = "{\"consequence\":\"" + consequence + "\", \"shipLeft\":\"" + shipLeft + "\"}";
         exchange.getResponseHeaders().add("Content-Type", "application/json");
         exchange.sendResponseHeaders(code, body.length());
         try(final OutputStream os = exchange.getResponseBody()){

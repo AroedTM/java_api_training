@@ -32,18 +32,4 @@ class CheckTest {
         final int number = check.getIntFromString("B2");
         Assertions.assertThat(number).isEqualTo(1);
     }
-
-    @Test
-    public void test_success_regex_destination(){
-        final String message = "dsfjshfisdfhttp://localhost:5555sdfjhnsdbnf";
-        final boolean bool = check.dest(new Game(), message);
-        Assertions.assertThat(bool).isTrue();
-    }
-
-    @Test
-    public void test_fail_regex_destination(){
-        final String message = "dsfjshfisdfhttp://locglhost:5555sdfjhnsdbnf";
-        final boolean bool = check.dest(new Game(), message);
-        Assertions.assertThat(bool).isFalse();
-    }
 }
