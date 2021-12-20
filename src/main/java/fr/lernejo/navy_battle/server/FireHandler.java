@@ -7,7 +7,7 @@ import fr.lernejo.navy_battle.check.Check;
 
 import java.io.IOException;
 //public record FireHandler(Game game) implements HttpHandler {
-public record FireHandler() implements HttpHandler {
+public class FireHandler implements HttpHandler {
 
     public void handle(HttpExchange exchange) throws IOException {
         if ("GET".equals(exchange.getRequestMethod())) {

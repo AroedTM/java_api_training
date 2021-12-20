@@ -8,9 +8,9 @@ import java.io.IOException;
 class CheckTest {
 
     private final Check check = new Check();
-    private final String jsonMaster = "{\n" +"    \"$schema\": \"http://json-schema.org/schema#\",\n" +
+    /*private final String jsonMaster = "{\n" +"    \"$schema\": \"http://json-schema.org/schema#\",\n" +
         "    \"type\": \"object\",\n" +"    \"properties\": {\n" +"        \"id\": {\n" +
-        "            \"type\": \"string\"\n" +"        }\n" +"    },\n" +"    \"required\": [\n" +"        \"id\"\n" +"    ]\n" +"}";
+        "            \"type\": \"string\"\n" +"        }\n" +"    },\n" +"    \"required\": [\n" +"        \"id\"\n" +"    ]\n" +"}";*/
 
     @Test
     void four_is_Int() {
@@ -24,17 +24,17 @@ class CheckTest {
         Assertions.assertThat(bool).isFalse();
     }
 
-    @Test
+    /*@Test
     void json_is_similar() throws IOException {
         final boolean bool = check.validateJson("{\"id\":\"45145151\"}", jsonMaster);
         Assertions.assertThat(bool).isTrue();
-    }
+    }*/
 
-    @Test
+    /*@Test
     void json_is_different() throws IOException {
         final boolean bool = check.validateJson("{\"test\":\"45145151\"}", jsonMaster);
         Assertions.assertThat(bool).isFalse();
-    }
+    }*/
 
     /*@Test
     void cell_is_A1(){
