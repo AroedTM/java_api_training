@@ -27,6 +27,12 @@ class CroiseurTest {
     }
 
     @Test
+    void _update_and_see_status(){
+        croiseur.updateStatus();
+        Assertions.assertThat(croiseur.getStatus()).isTrue();
+    }
+
+    @Test
     void name_is_ContreTorpilleur() {
         Assertions.assertThat(croiseur.name()).isEqualTo("Cruiser");
     }

@@ -27,6 +27,12 @@ class TorpilleurTest {
     }
 
     @Test
+    void _update_and_see_status(){
+        torpilleur.updateStatus();
+        Assertions.assertThat(torpilleur.getStatus()).isTrue();
+    }
+
+    @Test
     void name_is_ContreTorpilleur() {
         Assertions.assertThat(torpilleur.name()).isEqualTo("Torpedo boat");
     }

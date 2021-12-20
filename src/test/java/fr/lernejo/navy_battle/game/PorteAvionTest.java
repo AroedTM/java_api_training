@@ -27,6 +27,12 @@ class PorteAvionTest {
     }
 
     @Test
+    void _update_and_see_status(){
+        porteAvion.updateStatus();
+        Assertions.assertThat(porteAvion.getStatus()).isTrue();
+    }
+
+    @Test
     void name_is_ContreTorpilleur() {
         Assertions.assertThat(porteAvion.name()).isEqualTo("Aircraft carrier");
     }

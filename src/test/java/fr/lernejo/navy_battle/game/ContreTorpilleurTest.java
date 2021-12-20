@@ -27,6 +27,12 @@ class ContreTorpilleurTest {
     }
 
     @Test
+    void _update_and_see_status(){
+        contreTorpilleur.updateStatus();
+        Assertions.assertThat(contreTorpilleur.getStatus()).isTrue();
+    }
+
+    @Test
     void name_is_ContreTorpilleur() {
         Assertions.assertThat(contreTorpilleur.name()).isEqualTo("Destroyer");
     }
