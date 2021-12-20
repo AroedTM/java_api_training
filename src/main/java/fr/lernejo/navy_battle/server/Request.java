@@ -20,10 +20,10 @@ public class Request {
             .build();
     }
 
-    public HttpRequest getRequest(String url){
+    public HttpRequest getRequest(String url, String type){
         return HttpRequest.newBuilder()
             .uri(URI.create(url))
-            .setHeader("Accept", "text/html")
+            .setHeader("Accept", type)
             .GET()
             .build();
     }

@@ -63,11 +63,13 @@ public class Game {
     }
 
     public void shoot() throws IOException, InterruptedException {
+        try {Thread.sleep(500);}
+        catch(InterruptedException ex) {Thread.currentThread().interrupt();}
         System.out.println("Which enemy cell to attack ?");
         final ArrayList<String> target_list = new ArrayList<>();
         target_list.add(computerPlayer.cellToTarget());
         System.out.println(target_list.get(0));
-        final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0));
+        final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0), "application/json");
         final HttpClient client = HttpClient.newHttpClient();
         final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         consequence(response.body().toString(), target_list);
