@@ -3,13 +3,13 @@ package fr.lernejo.navy_battle.server;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import fr.lernejo.navy_battle.check.Check;
-//import fr.lernejo.navy_battle.game.Game;
+import fr.lernejo.navy_battle.game.Game;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
 
-//public record FireHandler(Game game) implements HttpHandler {
-public class FireHandler implements HttpHandler {
+public record FireHandler(Game game) implements HttpHandler {
+//public class FireHandler implements HttpHandler {
 
     public void handle(HttpExchange exchange) throws IOException {
         if ("GET".equals(exchange.getRequestMethod())) {

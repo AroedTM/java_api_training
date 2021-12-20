@@ -3,7 +3,7 @@ package fr.lernejo.navy_battle.server;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import fr.lernejo.navy_battle.check.Check;
-//import fr.lernejo.navy_battle.game.Game;
+import fr.lernejo.navy_battle.game.Game;
 
 import java.io.IOException;
 
@@ -15,11 +15,11 @@ public class StartHandler implements HttpHandler {
         "        \"message\": {\n" +"            \"type\": \"string\"\n" +"        }\n" +"    },\n" +"    \"required\": [\n" +"        \"id\",\n" +
         "        \"url\",\n" +"        \"message\"\n" +"    ]\n" +"}";
 
-    /*final public Game game;
+    final public Game game;
 
     public StartHandler(Game game) {
         this.game = game;
-    }*/
+    }
 
     public void handle(HttpExchange exchange) throws IOException {
         if("POST".equals(exchange.getRequestMethod())){

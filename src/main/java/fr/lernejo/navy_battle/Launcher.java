@@ -14,8 +14,8 @@ public class Launcher{
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Game game = new Game();
-        //final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]), game);
-        final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]));
+        final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]), game);
+        //final HttpServer server = new Server().launchServer(Integer.parseInt(args[0]));
         server.start();
         game.placeBoats();
         if(args.length == 2){
