@@ -7,6 +7,6 @@ import java.util.ArrayList;
 public interface Player {
     String cellToTarget();
     ArrayList<String> placeBoat(Boat boat);
-    void testPlacementColumn(Boat boat);
-    void testPlacementLine(Boat boat);
+    ArrayList<String> testPlacementColumn(Boat boat);
+    ArrayList<String> testPlacementLine(Boat boat);
 }

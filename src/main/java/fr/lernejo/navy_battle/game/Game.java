@@ -10,7 +10,7 @@ import java.util.List;
 public class Game {
     public final Sea sea = new Sea();
     public final char[][] my_sea = new char[10][10];
-    private final char[][] enemy_sea = new char[10][10];
+    public final char[][] enemy_sea = new char[10][10];
     public final List<Boat> boat_list = List.of(
         new PorteAvion(),
         new Croiseur(),

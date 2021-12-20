@@ -17,8 +17,20 @@ class ComputerPlayerTest {
     }
 
     @Test
-    void cell_to_place_correspond_regex(){
+    void cell_to_place_correspond_size(){
         final ArrayList<String> cell = computerPlayer.placeBoat(new PorteAvion());
+        org.assertj.core.api.Assertions.assertThat(cell.size()).isEqualTo(5);
+    }
+
+    @Test
+    void cell_to_place_correspond_size_column(){
+        final ArrayList<String> cell = computerPlayer.testPlacementColumn(new PorteAvion());
+        org.assertj.core.api.Assertions.assertThat(cell.size()).isEqualTo(5);
+    }
+
+    @Test
+    void cell_to_place_correspond_size_line(){
+        final ArrayList<String> cell = computerPlayer.testPlacementLine(new PorteAvion());
         org.assertj.core.api.Assertions.assertThat(cell.size()).isEqualTo(5);
     }
 

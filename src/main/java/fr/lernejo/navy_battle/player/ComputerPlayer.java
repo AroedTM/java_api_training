@@ -13,7 +13,7 @@ public class ComputerPlayer implements Player {
     private final ArrayList<String> alreadyTarget = new ArrayList<>();
     private final ArrayList<String> alreadyPlaced = new ArrayList<>();
     private final ArrayList<Boolean> again = new ArrayList<>();
-    private final ArrayList<String> positions = new ArrayList<>();
+    final ArrayList<String> boatPositions = new ArrayList<>();
 
     @Override
     public String cellToTarget() {
@@ -34,22 +34,23 @@ public class ComputerPlayer implements Player {
     public ArrayList<String> placeBoat(Boat boat) {
         final int dir = random.nextInt(2);
         do{
-            positions.clear();
+            boatPositions.clear();
             again.clear();
             again.add(false);
-            if(dir == 0) testPlacementColumn(boat);
-            else{testPlacementLine(boat);}
-            for(String pos : positions){
+            if(dir == 0) boatPositions.addAll(testPlacementColumn(boat));
+            else{boatPositions.addAll(testPlacementLine(boat));}
+            for(String pos : boatPositions){
                 if(alreadyPlaced.contains(pos)){
                     again.remove(0);
                     again.add(true);}}
         }while(again.get(0));
-        alreadyPlaced.addAll(positions);
-        return positions;
+        alreadyPlaced.addAll(boatPositions);
+        return boatPositions;
     }
 
     @Override
-    public void testPlacementColumn(Boat boat) {
+    public ArrayList<String> testPlacementColumn(Boat boat) {
+        final ArrayList<String> positions = new ArrayList<>();
         final int intCol = random.nextInt(10);
         final String col = letterList.get(intCol);
         final int intLine = random.nextInt(6) + 1;
@@ -60,11 +61,12 @@ public class ComputerPlayer implements Player {
             final String nextLine = Integer.toString(intLine + i);
             final String nextCell = col + nextLine;
             positions.add(nextCell);
-        }
+        }return positions;
     }
 
     @Override
-    public void testPlacementLine(Boat boat){
+    public ArrayList<String> testPlacementLine(Boat boat){
+        final ArrayList<String> positions = new ArrayList<>();
         final int intCol = random.nextInt(6);
         final String col = letterList.get(intCol);
         final int intLine = random.nextInt(10) + 1;
@@ -75,6 +77,6 @@ public class ComputerPlayer implements Player {
             final String nextCol = letterList.get(intCol + i);
             final String nextCell = nextCol + line;
             positions.add(nextCell);
-        }
+        }return positions;
     }
 }
