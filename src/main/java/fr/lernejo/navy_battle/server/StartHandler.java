@@ -28,6 +28,8 @@ public class StartHandler implements HttpHandler {
                 if(new Check().validateJson(message, jsonMaster)){
                     new Response().json_response_post(exchange, 202, "2", "Hi, ready too. Game on !");
                     game.initData(message);
+                    try {game.shoot();}
+                    catch (IOException | InterruptedException e) {e.printStackTrace();}
                 }else {new Response().basic_response(exchange, 400, "Bad Request");}
             }
             else {new Response().basic_response(exchange, 400, "Bad Request");}

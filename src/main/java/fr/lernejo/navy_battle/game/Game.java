@@ -46,13 +46,7 @@ public class Game {
     public void initData(String message){
         this.address.add(message.split("\"")[7]);
         this.id_received.add(Integer.parseInt(message.split("\"")[3]));
-        this.gameOn.remove(0);
-        this.gameOn.add(true);
         System.out.println("Game on !");
-        if(this.id_received.get(0) == 1) {
-            try {shoot();}
-            catch (IOException | InterruptedException e) {e.printStackTrace();}
-        }
     }
 
     public String whatInCell(String cell){
@@ -69,16 +63,14 @@ public class Game {
     }
 
     public void shoot() throws IOException, InterruptedException {
-        if(gameOn.get(0)){
-            System.out.println("Which enemy cell to attack ?");
-            final ArrayList<String> target_list = new ArrayList<>();
-            target_list.add(computerPlayer.cellToTarget());
-            System.out.println(target_list.get(0));
-            final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0));
-            final HttpClient client = HttpClient.newHttpClient();
-            final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            consequence(response.body().toString(), target_list);
-        }
+        System.out.println("Which enemy cell to attack ?");
+        final ArrayList<String> target_list = new ArrayList<>();
+        target_list.add(computerPlayer.cellToTarget());
+        System.out.println(target_list.get(0));
+        final HttpRequest request = new Request().getRequest(this.address.get(0) + "/api/game/fire?cell=" + target_list.get(0));
+        final HttpClient client = HttpClient.newHttpClient();
+        final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        consequence(response.body().toString(), target_list);
     }
 
     public void consequence(String response, ArrayList<String> target_list){

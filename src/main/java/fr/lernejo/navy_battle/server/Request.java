@@ -23,6 +23,7 @@ public class Request {
     public HttpRequest getRequest(String url){
         return HttpRequest.newBuilder()
             .uri(URI.create(url))
+            .setHeader("Accept", "text/html")
             .GET()
             .build();
     }

@@ -24,7 +24,7 @@ public class Launcher{
                 "application/json",
                 "{\"id\":\"1\", \"url\":\"http://localhost:" + args[0] + "\", \"message\":\"Hello, my boats are ready ! And you ?\"}");
             final HttpResponse<?> response =  client.send(request, HttpResponse.BodyHandlers.ofString());
-            //game.initData(response.body().toString());
+            game.initData(response.body().toString());
         }
     }
 }
