@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class ComputerPlayer implements Player {
 
-    final Random random = new Random();
-    final ArrayList<String> letterList = new ArrayList<>(List.of("A","B","C","D","E","F","G","H","I","J"));
-    final ArrayList<String> alreadyTarget = new ArrayList<>();
-    final ArrayList<String> alreadyPlaced = new ArrayList<>();
+    private final Random random = new Random();
+    private final ArrayList<String> letterList = new ArrayList<>(List.of("A","B","C","D","E","F","G","H","I","J"));
+    private final ArrayList<String> alreadyTarget = new ArrayList<>();
+    private final ArrayList<String> alreadyPlaced = new ArrayList<>();
 
     @Override
     public String cellToTarget() {

@@ -13,7 +13,7 @@ import java.net.http.HttpResponse;
 
 class CallHandlerTest {
 
-    private final HttpServer server = new Server().launchServer(9870, new Game(new ComputerPlayer()));
+    private final HttpServer server = new Server().launchServer(9870, new Game());
     private final HttpClient client = HttpClient.newHttpClient();
 
     CallHandlerTest() throws IOException {

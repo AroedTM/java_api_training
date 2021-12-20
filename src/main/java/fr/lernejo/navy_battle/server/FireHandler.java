@@ -13,7 +13,7 @@ public record FireHandler(Game game) implements HttpHandler {
         if ("GET".equals(exchange.getRequestMethod())) {
             final String cell = new Check().getCell(exchange.getRequestURI().toString());
             final String consequence = game.sea.whatInCell(cell,game.my_sea, game.boat_list);
-            final boolean shipLeft = game.sea.statusGame(game.boat_list);
+            final boolean shipLeft = game.statusGame();
             System.out.println("Cell " + cell + " attacked. Enemy " + consequence + " you.");
             new Response().json_response_get(exchange, 202, consequence, shipLeft);
             if(!shipLeft){

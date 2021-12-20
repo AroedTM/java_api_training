@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Sea {
 
-    final public Check check = new Check();
+    private final Check check = new Check();
 
     public void initializeSea(char[][] sea) {
         for (final char[] chars : sea) {
@@ -71,13 +71,5 @@ public class Sea {
             }
         }
         return "hit";
-    }
-
-    public boolean statusGame(List<Boat> boat_list){
-        for (final Boat b : boat_list) {
-            if(!b.getStatus())
-                return true;
-        }
-        return false;
     }
 }

@@ -11,22 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    final public Sea sea = new Sea();
-    final public char[][] my_sea = new char[10][10];
-    final public char[][] enemy_sea = new char[10][10];
-    final public List<Boat> boat_list = List.of(
+    public final Sea sea = new Sea();
+    public final char[][] my_sea = new char[10][10];
+    private final char[][] enemy_sea = new char[10][10];
+    public final List<Boat> boat_list = List.of(
         new PorteAvion(),
         new Croiseur(),
         new ContreTorpilleur(),
         new ContreTorpilleur(),
         new Torpilleur()
     );
-    final public ComputerPlayer computerPlayer;
-    final public ArrayList<String> destination = new ArrayList<>();
-
-    public Game(ComputerPlayer computerPlayer){
-        this.computerPlayer = computerPlayer;
-    }
+    public final ArrayList<String> destination = new ArrayList<>();
+    private final ComputerPlayer computerPlayer = new ComputerPlayer();
 
     public void placeBoats(){
         sea.initializeSea(my_sea);
@@ -70,5 +66,13 @@ public class Game {
         else{
             sea.displaySea(my_sea, sea.fillCells(target_list, enemy_sea, 'X'));
             System.out.println("Target missed !");}
+    }
+
+    public boolean statusGame(){
+        for (final Boat b : boat_list) {
+            if(!b.getStatus())
+                return true;
+        }
+        return false;
     }
 }
