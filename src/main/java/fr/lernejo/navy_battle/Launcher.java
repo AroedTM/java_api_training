@@ -12,7 +12,7 @@ public class Launcher{
     public static void main(String[] args) throws IOException, InterruptedException {
         final Game game = new Game();
         final int port = Integer.parseInt(args[0]);
-        HttpServer server = new Server().launchServer(port, game);
+        final HttpServer server = new Server().launchServer(port, game);
         server.start();
         game.placeBoats();
         if(args.length == 2){

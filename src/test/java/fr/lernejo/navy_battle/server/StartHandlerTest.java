@@ -23,16 +23,6 @@ class StartHandlerTest {
     }
 
     @Test
-    public void test_400_post_without_json() throws Exception {
-        server.start();
-        final String response = new Request().postRequest("http://localhost:9870/api/game/start",
-            "text/html",
-            "Test");
-        Assertions.assertThat(response).contains("Bad Request");
-        server.stop(0);
-    }
-
-    @Test
     public void test_400_post_with_bad_json() throws Exception {
         server.start();
         final String response = new Request().postRequest("http://localhost:9870/api/game/start",
@@ -52,5 +42,4 @@ class StartHandlerTest {
         Assertions.assertThat(response).contains("id");
         server.stop(0);
     }
-
 }

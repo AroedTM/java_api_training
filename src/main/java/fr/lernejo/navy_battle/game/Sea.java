@@ -42,6 +42,12 @@ public class Sea {
         System.out.println("   ---------------------------------------------");
     }
 
+    public void updateMyBoard(String cell, String consequence, char[][] my_sea, char[][] enemy_sea){
+        if(consequence.equals("hit") || consequence.equals("sunk")) fillCells(new ArrayList<>(List.of(cell)), my_sea, 'H');
+        else{fillCells(new ArrayList<>(List.of(cell)), my_sea, 'X');}
+        displaySea(my_sea, enemy_sea);
+    }
+
     public String whatInCell(String cell, char[][] my_sea, List<Boat> boat_list) {
         final String[] split = cell.split("");
         final int col = new Check().getIntFromString(split[0]);
