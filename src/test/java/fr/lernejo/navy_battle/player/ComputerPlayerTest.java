@@ -1,4 +1,4 @@
-/*package fr.lernejo.navy_battle.player;
+package fr.lernejo.navy_battle.player;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,4 +19,4 @@ class ComputerPlayerTest {
         Assertions.assertTrue(cell.matches("[A-J]([1-9]|10)"));
     }
 
-}*/
+}

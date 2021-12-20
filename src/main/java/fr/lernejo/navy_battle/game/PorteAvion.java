@@ -1,4 +1,4 @@
-/*package fr.lernejo.navy_battle.game;
+package fr.lernejo.navy_battle.game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,4 +49,4 @@ public class PorteAvion implements Boat {
     public int size() {
         return 5;
     }
-}*/
+}

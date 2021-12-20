@@ -30,11 +30,11 @@ public class Check {
         }
     }
 
-    /*public String getCell(String url){
+    public String getCell(String url){
         return url.split("=")[1];
     }
 
     public int getIntFromString(String string){
         return string.charAt(0) % 65;
-    }*/
+    }
 }
