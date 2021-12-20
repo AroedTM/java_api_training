@@ -6,6 +6,8 @@ import fr.lernejo.navy_battle.check.Check;
 //import fr.lernejo.navy_battle.game.Game;
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
+
 //public record FireHandler(Game game) implements HttpHandler {
 public class FireHandler implements HttpHandler {
 

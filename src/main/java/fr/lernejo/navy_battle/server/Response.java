@@ -22,6 +22,7 @@ public class Response{
             + "\",\n\t\"message\": \""
             + message
             + "\"\n}";
+        exchange.getResponseHeaders().set("Content-Type", "application/json");
         exchange.sendResponseHeaders(code, body.length());
         try(final OutputStream os = exchange.getResponseBody()){
             os.write(body.getBytes());
@@ -34,7 +35,7 @@ public class Response{
             + "\",\n\t\"shipLeft\": "
             + shipLeft
             + "\n}";
-        exchange.setAttribute("Content-Type", "application/json");
+        exchange.getResponseHeaders().set("Content-Type", "application/json");
         exchange.sendResponseHeaders(code, body.length());
         try(final OutputStream os = exchange.getResponseBody()){
             os.write(body.getBytes());
