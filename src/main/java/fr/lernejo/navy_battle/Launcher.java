@@ -20,7 +20,7 @@ public class Launcher{
         server.start();
         game.placeBoats();
         if(args.length == 2){
-            game.destination = args[1];
+            game.destination.add(args[1]);
             final HttpClient client = HttpClient.newHttpClient();
             final HttpRequest request = new Request().postRequest(args[1] + "/api/game/start",
                 "application/json",

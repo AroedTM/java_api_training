@@ -22,7 +22,7 @@ public class Game {
         new Torpilleur()
     );
     final public ComputerPlayer computerPlayer;
-    public String destination;
+    final public ArrayList<String> destination = new ArrayList<>();
 
     public Game(ComputerPlayer computerPlayer){
         this.computerPlayer = computerPlayer;
@@ -49,7 +49,7 @@ public class Game {
         final ArrayList<String> target_list = new ArrayList<>();
         target_list.add(computerPlayer.cellToTarget());
         System.out.println(target_list.get(0));
-        final HttpRequest request = new Request().getRequest(destination + "/api/game/fire?cell=" + target_list.get(0), "application/json");
+        final HttpRequest request = new Request().getRequest(destination.get(0) + "/api/game/fire?cell=" + target_list.get(0), "application/json");
         final HttpClient client = HttpClient.newHttpClient();
         final HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         consequence(response.body().toString(), target_list);

@@ -15,7 +15,6 @@ class StartHandlerTest {
 
     private final int port = 9870;
     private final HttpServer server = new Server().launchServer(port, new Game(new ComputerPlayer()));
-    //private final HttpServer server = new Server().launchServer(port);
     private final HttpClient client = HttpClient.newHttpClient();
 
     StartHandlerTest() throws IOException {

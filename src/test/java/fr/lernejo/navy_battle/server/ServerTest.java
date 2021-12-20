@@ -15,7 +15,6 @@ class ServerTest {
     @Test
     public void test_server_listening_on_port() throws IOException {
         final HttpServer server = new Server().launchServer(9870, new Game(new ComputerPlayer()));
-        //final HttpServer server = new Server().launchServer(9870);
         server.start();
         final Socket socket = new Socket(InetAddress.getLocalHost(), 9870);
         Assertions.assertThat(socket).isNotNull();

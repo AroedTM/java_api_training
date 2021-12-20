@@ -41,5 +41,4 @@ class TorpilleurTest {
     void size_is_3() {
         Assertions.assertThat(torpilleur.size()).isEqualTo(2);
     }
-
 }

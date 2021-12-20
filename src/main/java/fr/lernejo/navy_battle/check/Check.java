@@ -5,8 +5,6 @@ import net.jimblackler.jsonschemafriend.SchemaException;
 import net.jimblackler.jsonschemafriend.SchemaStore;
 import net.jimblackler.jsonschemafriend.Validator;
 
-import java.io.IOException;
-
 public class Check {
 
     public boolean isStringInt(String string){
@@ -18,7 +16,7 @@ public class Check {
         }
     }
 
-    public boolean validateJson(String jsonToCompare, String jsonMaster) throws IOException {
+    public boolean validateJson(String jsonToCompare, String jsonMaster) {
         try {
             final SchemaStore schemaStore = new SchemaStore();
             final Schema schema = schemaStore.loadSchemaJson(jsonMaster);
