@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle.game;
+/*package fr.lernejo.navy_battle.game;
 
 import fr.lernejo.navy_battle.check.Check;
 
@@ -45,4 +45,4 @@ public class Sea {
         }
         System.out.println("   ---------------------------------------------");
     }
-}
+}*/

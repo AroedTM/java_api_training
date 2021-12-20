@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle.player;
+/*package fr.lernejo.navy_battle.player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,4 +40,4 @@ public class ComputerPlayer implements Player {
         alreadyPlaced.add(cell.get(0));
         return cell.get(0);
     }
-}
+}*/

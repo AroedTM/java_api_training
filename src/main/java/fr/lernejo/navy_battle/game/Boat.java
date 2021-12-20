@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle.game;
+/*package fr.lernejo.navy_battle.game;
 
 import java.util.ArrayList;
 
@@ -11,4 +11,4 @@ public interface Boat {
     ArrayList<String> getHitBoatPos();
     void updateStatus();
     boolean getStatus();
-}
+}*/

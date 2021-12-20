@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle.game;
+/*package fr.lernejo.navy_battle.game;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,4 +36,4 @@ class PorteAvionTest {
         Assertions.assertThat(porteAvion.size()).isEqualTo(5);
     }
 
-}
+}*/

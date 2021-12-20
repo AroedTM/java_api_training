@@ -1,7 +1,7 @@
 package fr.lernejo.navy_battle.server;
 
 import com.sun.net.httpserver.HttpServer;
-import fr.lernejo.navy_battle.game.Game;
+//import fr.lernejo.navy_battle.game.Game;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,8 @@ import java.net.http.HttpResponse;
 class StartHandlerTest {
 
     private final int port = 9870;
-    private final HttpServer server = new Server().launchServer(port, new Game());
+    //private final HttpServer server = new Server().launchServer(port, new Game());
+    private final HttpServer server = new Server().launchServer(port);
     private final HttpClient client = HttpClient.newHttpClient();
 
     StartHandlerTest() throws IOException {
